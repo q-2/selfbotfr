@@ -1,0 +1,12 @@
+.message {
+    text-align: center;
+    margin-top: 20px;
+    min-height: 24px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.message.error {
+    color: var(--error);
+    font-weight: 600;
+}

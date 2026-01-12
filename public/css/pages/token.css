@@ -1,0 +1,182 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    z-index: 1000;
+    position: relative;
+    pointer-events: auto;
+    padding: 40px 20px;
+}
+
+.main-container .card {
+    max-width: 900px;
+    padding: 40px;
+}
+
+.step {
+    margin-bottom: 32px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+}
+
+.step h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+}
+
+.step p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.step ul {
+    margin-left: 20px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.step ul li {
+    margin-bottom: 8px;
+}
+
+.step a {
+    color: var(--text-primary);
+    text-decoration: underline;
+    transition: opacity 0.3s;
+}
+
+.step a:hover {
+    opacity: 0.7;
+}
+
+.warning-box {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.warning-box strong {
+    color: var(--error);
+}
+
+.info-box {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.info-box strong {
+    color: var(--success);
+}
+
+.code-block {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+    font-family: var(--font-mono);
+    overflow-x: auto;
+}
+
+.code-block code {
+    color: #4ec9b0;
+    font-size: 13px;
+    line-height: 1.6;
+    word-break: break-all;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.copy-btn.copied {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.4);
+    color: var(--success);
+}
+
+.back-btn {
+    position: relative;
+    width: 100%;
+    height: 65px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-secondary);
+    clip-path: polygon(0% 0%, 90% 0%, 100% 30%, 100% 100%, 10% 100%, 0% 70%);
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    margin-top: 32px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--text-primary);
+    transform: translateX(-10px);
+}
+
+@media (max-width: 768px) {
+    .main-container .card {
+        padding: 24px 16px;
+    }
+
+    .step {
+        padding: 16px;
+    }
+
+    .code-block {
+        padding: 16px;
+        padding-top: 48px;
+    }
+
+    .copy-btn {
+        position: static;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+}

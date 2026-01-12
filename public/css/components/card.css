@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    z-index: 1000;
+    position: relative;
+    pointer-events: auto;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-primary);
+    border-radius: 0;
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    width: 100%;
+    min-width: 320px;
+    max-width: 420px;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    clip-path: polygon(0% 0%, 95% 0%, 100% 5%, 100% 100%, 5% 100%, 0% 95%);
+    pointer-events: auto;
+    position: relative;
+    z-index: 1001;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.header * {
+    pointer-events: auto;
+}
+
+.logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    margin: 0 auto 20px;
+    border: 2px solid #2a2a2a;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: var(--text-tertiary);
+    font-size: 15px;
+}
+
+.vls-main-title {
+    font-size: 7vw;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.8;
+}
+
+.glitch-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+}

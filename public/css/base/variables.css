@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+    --accent: #fff;
+    --bg: #000;
+    --card-bg: rgba(20, 20, 20, 0.8);
+    --border-primary: rgba(255, 255, 255, 0.1);
+    --border-secondary: rgba(255, 255, 255, 0.08);
+    --input-bg: rgba(255, 255, 255, 0.02);
+    --text-primary: #fff;
+    --text-secondary: #a3a3a3;
+    --text-tertiary: #737373;
+    --success: #22c55e;
+    --warning: #eab308;
+    --error: #ef4444;
+    --font-primary: "Space Grotesk", "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+}

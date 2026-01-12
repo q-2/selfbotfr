@@ -1,0 +1,33 @@
+.form-group {
+    margin-bottom: 24px;
+    pointer-events: auto;
+    position: relative;
+    z-index: 1002;
+}
+
+.input {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--border-secondary);
+    border-radius: 0;
+    padding: 14px 16px;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-family: var(--font-mono);
+    transition: all 0.3s;
+    outline: none;
+    clip-path: polygon(0% 0%, 95% 0%, 100% 20%, 100% 100%, 5% 100%, 0% 80%);
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1003;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.1em;
+}
+
+.input:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}

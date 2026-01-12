@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <canvas id="canvas-vortex"></canvas>
+
+  <%- include('partials/cursor') %>
+  <%- include('partials/bootloader') %>
+  <%- include('partials/gates') %>
+
+  <div class="particles-overlay"></div>
+
+  <div class="container" id="app" style="opacity: 0;">
+    <div class="card">
+      <div class="header">
+        <img src="https://media.discordapp.net/external/_Ts39FjD2OnfZQv8zEnwv4A7aFVEKCtnkzYnPQi0kFs/https/i.postimg.cc/rwPrQDBg/EF161049-6604-4B8C-9A5F-84826E759A60.gif" class="logo" alt="VLS">
+        <h1 class="vls-main-title" style="font-size: 3rem; margin-bottom: 8px;">SelfBot〃VLS</h1>
+        <p class="glitch-sub mt-4 uppercase" style="margin-top: 1rem;">SelfBot_VLS_OnTOP</p>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-left">
+          <div class="status-dot"></div>
+          <span class="status-text">En ligne</span>
+        </div>
+        <div class="status-count">
+          <span id="userCount"><%= userCount %></span> / <span id="totalCount"><%= totalCount %></span>
+        </div>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <input type="password" id="token" class="input" placeholder="Votre token d'accès" required autocomplete="off" onfocus="hideCursor()" onblur="showCursor()" onmouseenter="hideCursor()" onmouseleave="showCursor()">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px; min-height: 78px;" onmouseenter="hideCursor()" onmouseleave="showCursor()">
+          <div id="hcaptcha-container"></div>
+        </div>
+
+        <button type="submit" id="loginBtn" class="axe-btn" onclick="event.stopPropagation(); ripple(event);" onmouseenter="grow(true); hideCursor()" onmouseleave="grow(false); showCursor()">
+          <div class="btn-side-anim"></div>
+          <div class="flex flex-col items-start font-mono" style="display: flex; flex-direction: column; align-items: flex-start; font-family: 'JetBrains Mono', monospace;">
+            <span style="font-size: 8px; opacity: 0.3;">01 / CONNEXION</span>
+            <span id="btnText" style="font-size: 14px; font-weight: bold; letter-spacing: 0.1em;">Se connecter</span>
+          </div>
+          <svg width="20" height="20" class="group-hover:opacity-100" style="opacity: 0.2; transition: opacity 0.3s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 5l7 7-7 7M5 12h14"></path></svg>
+        </button>
+
+        <button type="button" class="axe-btn" style="margin-top: 12px;" onclick="event.stopPropagation(); ripple(event); window.open('https://discord.gg/nfFqGjbx7t','_blank')" onmouseenter="grow(true); hideCursor()" onmouseleave="grow(false); showCursor()">
+          <div class="btn-side-anim"></div>
+          <div class="flex flex-col items-start font-mono" style="display: flex; flex-direction: column; align-items: flex-start; font-family: 'JetBrains Mono', monospace;">
+            <span style="font-size: 8px; opacity: 0.3;">02 / SERVEUR</span>
+            <span style="font-size: 14px; font-weight: bold; letter-spacing: 0.1em;">Discord VLS</span>
+          </div>
+          <i class="fa-brands fa-discord group-hover:opacity-100" style="opacity: 0.2; transition: opacity 0.3s;"></i>
+        </button>
+      </form>
+
+      <button type="button" class="axe-btn" style="margin-top: 12px;" onclick="event.stopPropagation(); ripple(event); window.location.href='/token'" onmouseenter="grow(true); hideCursor()" onmouseleave="grow(false); showCursor()">
+        <div class="btn-side-anim"></div>
+        <div class="flex flex-col items-start font-mono" style="display: flex; flex-direction: column; align-items: flex-start; font-family: 'JetBrains Mono', monospace;">
+          <span style="font-size: 8px; opacity: 0.3;">03 / AIDE</span>
+          <span style="font-size: 14px; font-weight: bold; letter-spacing: 0.1em;">Besoin d'aide ?</span>
+        </div>
+        <svg width="20" height="20" class="group-hover:opacity-100" style="opacity: 0.2; transition: opacity 0.3s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path></svg>
+      </button>
+
+      <div id="message" class="message"></div>
+
+      <button id="joinBtn" class="axe-btn btn-success hidden" onclick="event.stopPropagation(); ripple(event); joinServer()" onmouseenter="grow(true); hideCursor()" onmouseleave="grow(false); showCursor()">
+        <div class="btn-side-anim"></div>
+        <div class="flex flex-col items-start font-mono" style="display: flex; flex-direction: column; align-items: flex-start; font-family: 'JetBrains Mono', monospace;">
+          <span style="font-size: 8px; opacity: 0.3;">03 / ACCÈS</span>
+          <span style="font-size: 14px; font-weight: bold; letter-spacing: 0.1em;">Rejoindre le serveur</span>
+        </div>
+        <svg width="20" height="20" class="group-hover:opacity-100" style="opacity: 0.2; transition: opacity 0.3s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 5l7 7-7 7M5 12h14"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="/js/vortex.js"></script>
+  <script src="/js/bootloader.js"></script>
+  <script src="/js/cursor.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

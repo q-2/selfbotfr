@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <%- include('partials/head') %>
+  <link rel="stylesheet" href="/css/pages/token.css">
+</head>
+<body>
+  <canvas id="canvas-vortex"></canvas>
+  
+  <%- include('partials/cursor') %>
+  
+  <div class="particles-overlay"></div>
+  
+  <div class="main-container">
+    <div class="card">
+      <div class="header">
+        <h1 class="title">🔑 Chope ton Token</h1>
+        <p class="subtitle">GUIDE_RAPIDE</p>
+      </div>
+
+      <div class="warning-box">
+        <strong>⚠️ ATTENTION :</strong> Ton token Discord c'est comme ton mdp, partage le JAMAIS à personne et utilise le que sur des sites de confiance comme DEV-IA.fr
+      </div>
+
+      <div class="step">
+        <h2>Étape 1 : Ouvre Discord</h2>
+        <p>Va sur <a href="https://discord.com/app" target="_blank">discord.com/app</a> et connecte toi à ton compte</p>
+      </div>
+
+      <div class="step">
+        <h2>Étape 2 : Ouvre la Console</h2>
+        <p>Appuie sur une de ces touches :</p>
+        <ul>
+          <li><strong>Windows/Linux :</strong> <code>F12</code> ou <code>Ctrl + Shift + I</code></li>
+          <li><strong>Mac :</strong> <code>Cmd + Option + I</code></li>
+        </ul>
+        <p style="margin-top: 12px;">Après clique sur l'onglet <strong>"Console"</strong> en haut</p>
+      </div>
+
+      <div class="step">
+        <h2>Étape 3 : Colle le Code</h2>
+        <p>Copie le code en dessous et colle le dans la console, puis tape <strong>Entrée</strong></p>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">COPIER</button>
+          <code id="token-code">if(window.Sentry){window.Sentry.init=()=>{};window.Sentry.captureException=()=>{};window.Sentry.captureMessage=()=>{};window.Sentry.withScope=cb=>cb({setTag:()=>{},setContext:()=>{}});}console.error=()=>{};console.warn=()=>{};console.info=()=>{};window.addEventListener("error",e=>e.preventDefault());window.addEventListener("unhandledrejection",e=>e.preventDefault());webpackChunkdiscord_app.push([[Math.random()],{},e=>{for(let c in e.c){try{let m=e.c[c].exports;if(m&&m.default&&typeof m.default.getToken==="function"){let t=m.default.getToken();if(typeof t==="string")console.log("Token:",t)}}catch{}}}])</code>
+        </div>
+        <div class="info-box">
+          <strong>💡 INFO :</strong> Le code va chercher ton token automatiquement dans la console Discord, tu vas voir apparaître "Token: ..."
+        </div>
+        <div class="warning-box" style="margin-top: 16px; background: rgba(255, 193, 7, 0.1); border-color: rgba(255, 193, 7, 0.3);">
+          <strong>⚠️ IMPORTANT :</strong> Si tu vois un texte en <strong style="color: #ffc107;">jaune</strong> dans la console après avoir collé le script, <strong>t'inquiète pas c'est normal</strong>, c'est juste une sécurité Discord. Tape juste dans la console :
+          <ul style="margin-top: 8px; margin-left: 20px;">
+            <li><code style="color: #ffc107;">allow pasting</code> si c'est en anglais</li>
+            <li><code style="color: #ffc107;">autoriser le collage</code> si c'est en français</li>
+          </ul>
+          Puis tape <strong>Entrée</strong> et recolle le code
+        </div>
+      </div>
+
+      <div class="step">
+        <h2>Étape 4 : Récupère ton Token</h2>
+        <p>Après avoir collé le code, tu vas voir dans la console :</p>
+        <div class="code-block">
+          <code style="color: #4ec9b0;">Token: TON_TOKEN_ICI</code>
+        </div>
+        <p style="margin-top: 12px;">Copie tout le texte après "Token: " (c'est ton token Discord)</p>
+      </div>
+
+      <div class="step">
+        <h2>Étape 5 : Utilise ton Token</h2>
+        <p>Maintenant que t'as ton token, tu peux :</p>
+        <ul>
+          <li>Aller sur <a href="/">la page d'accueil</a></li>
+          <li>Te connecter avec ton token</li>
+          <li>Profiter du selfbot</li>
+        </ul>
+      </div>
+
+      <div class="warning-box" style="margin-top: 24px;">
+        <strong>🔒 SÉCURITÉ :</strong> Si tu penses que ton token a leak, change direct ton mdp Discord, ça va régénérer ton token automatiquement
+      </div>
+
+      <a href="/" class="back-btn" onmouseenter="grow(true)" onmouseleave="grow(false)">
+        <div class="btn-side-anim"></div>
+        <span>← RETOUR À L'ACCUEIL</span>
+      </a>
+    </div>
+  </div>
+
+  <script src="/js/vortex.js"></script>
+  <script src="/js/cursor.js"></script>
+  <script>
+    function grow(isHover) {
+      if (typeof gsap !== "undefined") {
+        gsap.to("#cursor-ring", { 
+          scale: isHover ? 1.5 : 1, 
+          duration: 0.3 
+        });
+      }
+    }
+
+    function copyCode(btn) {
+      const code = document.getElementById("token-code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "✓ COPIÉ";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = "COPIER";
+          btn.classList.remove("copied");
+        }, 2000);
+      }).catch(err => {
+        alert("Erreur lors de la copie, copiez manuellement");
+      });
+    }
+  </script>
+</body>
+</html>
