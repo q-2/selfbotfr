@@ -34,26 +34,12 @@ On a juste copié leur code pour exposer le truc, on la meme optimiser un peu le
 
 Bon ok on s'est pas contenté de juste copier, on a aussi intégré l'API [Stealy-Selfbot](https://github.com/Senju-sh/Stealy-Selfbot) pour que ça serve vraiment à quelque chose
 
-**Ce qu'on a viré de l'API Stealy:**
-- Le système de codes premium/VIP (inutile maintenant)
-- Tout le système de vanity URL defender
-- Les snipers (nitro, lockurl, snipeurl, etc.)
-- La vérification admin pour valider les users
-- Le requirement Bun (ça tourne sur Node.js maintenant)
-- Les fichiers TOTP.js et Ticket.js pour la 2FA
-
 **Ce qu'on a ajouté:**
 - Connexion automatique via la page web
 - Les tokens sont ajoutés direct dans l'API quand tu te connectes
 - Le compteur d'utilisateurs affiche le vrai nombre de connectés
 - Bridge entre le frontend web et l'API selfbot
 - Remplacement de legend.js par discord.js-selfbot-v13
-
-**Ce qu'on a optimisé:**
-- Messages humanisés partout (fini les phrases d'IA)
-- CSS bien organisé avec des imports
-- Viré tous les console.log
-- Nettoyé le code inutile
 
 Maintenant quand tu te connectes sur la page web avec ton token Discord, t'es automatiquement ajouté à l'API Stealy et tu peux utiliser toutes les commandes du selfbot direct sur Discord
 
