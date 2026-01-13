@@ -30,6 +30,8 @@ Parce que c'est marrant de voir des gens qui font croire qu'ils codent alors que
 
 On a juste copié leur code pour exposer le truc, on la meme optimiser un peu le code et le rendre plus performant quoi pcq c'etait vraiment pas terrible...
 
+![Preview](https://cdn.discordapp.com/attachments/1395393665542914099/1460423059923013787/CleanShot_2026-01-13_at_00.59.422x.png?ex=6966dc76&is=69658af6&hm=7da8ecd3cf6656ab74d1467dafd7bdd9100a1742e8388c9d69514f936b6e7665&)
+
 ## ⚠️ Note
 
 Ce projet est à but éducatif. L'utilisation de selfbots Discord peut violer les ToS de Discord. Utilisez à vos risques et périls
