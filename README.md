@@ -1,79 +1,39 @@
-# SelfBot VLS
+# SelfBot VLS 🤖
 
-Système d'authentification moderne pour SelfBot VLS avec interface futuriste
+> **DISCLAIMER:** Ce projet est une copie et optimisation voir meme amélioration de [selfbot.fr](https://selfbot.fr/) qui a été entièrement codé par une IA xD
 
-## Installation
+## 🎭 Le Projet Original
+
+Alors voilà, on a découvert que le site [selfbot.fr](https://selfbot.fr/) a été entièrement codé par une IA
+
+Littéralement tout leur code c'est de l'IA qui l'a fait, l'architecture, le design cyber-axe, les animations, même leurs messages
+
+## 🚀 Installation
 
 ```bash
 npm install
-```
-
-## Configuration
-
-Créez un fichier `.env` à la racine du projet:
-
-```env
-PORT=3000
-HCAPTCHA_SITE_KEY=votre_cle_site_hcaptcha
-HCAPTCHA_SECRET_KEY=votre_cle_secrete_hcaptcha
-SESSION_SECRET=votre_secret_session
-```
-
-## Démarrage
-
-```bash
 npm start
 ```
 
-Ou en mode développement:
+Créez un `.env` avec vos clés hCaptcha si vous voulez le CAPTCHA (sinon il se cache tout seul)
 
-```bash
-npm run dev
+```env
+PORT=3000
+HCAPTCHA_SITE_KEY=..
+HCAPTCHA_SECRET_KEY=..
+SESSION_SECRET=..
 ```
 
-## Structure du projet
+## 💀 Pourquoi on fait ça
 
-```
-SelfbotFR/
-├── public/
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       ├── vortex.js
-│       ├── bootloader.js
-│       ├── cursor.js
-│       └── auth.js
-├── routes/
-│   └── api.js
-├── views/
-│   ├── partials/
-│   │   ├── head.ejs
-│   │   ├── cursor.ejs
-│   │   ├── bootloader.ejs
-│   │   └── gates.ejs
-│   ├── index.ejs
-│   ├── token.ejs
-│   └── 404.ejs
-├── server.js
-├── package.json
-└── .env
-```
+Parce que c'est marrant de voir des gens qui font croire qu'ils codent alors que c'est juste de l'IA qui fait tout le taff
 
-## Fonctionnalités
+On a juste copié leur code pour exposer le truc, on la meme optimiser un peu le code et le rendre plus performant quoi pcq c'etait vraiment pas terrible...
 
-- Curseur personnalisé animé
-- Vortex magnétique de particules
-- Boot loader avec logs système
-- Animation de portes de transition
-- Intégration hCaptcha
-- Chiffrement AES-GCM des tokens
-- Interface responsive
-- Design futuriste cyber-axe
+## ⚠️ Note
 
-## Technologies
+Ce projet est à but éducatif. L'utilisation de selfbots Discord peut violer les ToS de Discord. Utilisez à vos risques et périls
 
-- Express.js
-- EJS
-- GSAP
-- hCaptcha
-- Crypto (AES-256-GCM)
+---
+
+*Projet original codé par une IA, copié et optimisé par nous*
