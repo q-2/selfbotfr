@@ -72,22 +72,22 @@ loginForm.addEventListener("submit", async (e) => {
   const token = tokenInput.value.trim();
 
   let captchaResponse = null;
-  if (hcaptchaSiteKey) {
-    if (!hcaptchaLoaded || !window.hcaptcha) {
-      messageDiv.textContent = "Le CAPTCHA charge encore, attends 2 secondes";
-      messageDiv.style.color = "#ef4444";
-      messageDiv.classList.add("error");
-      return;
-    }
+  // if (hcaptchaSiteKey) {
+  //   if (!hcaptchaLoaded || !window.hcaptcha) {
+  //     messageDiv.textContent = "Le CAPTCHA charge encore, attends 2 secondes";
+  //     messageDiv.style.color = "#ef4444";
+  //     messageDiv.classList.add("error");
+  //     return;
+  //   }
 
-    captchaResponse = window.hcaptcha.getResponse();
-    if (!captchaResponse) {
-      messageDiv.textContent = "Fais le CAPTCHA avant de continuer";
-      messageDiv.style.color = "#ef4444";
-      messageDiv.classList.add("error");
-      return;
-    }
-  }
+  //   captchaResponse = window.hcaptcha.getResponse();
+  //   if (!captchaResponse) {
+  //     messageDiv.textContent = "Fais le CAPTCHA avant de continuer";
+  //     messageDiv.style.color = "#ef4444";
+  //     messageDiv.classList.add("error");
+  //     return;
+  //   }
+  // }
 
   loginBtn.disabled = true;
   btnText.innerHTML = "CONNEXION EN COURS";
@@ -128,11 +128,58 @@ loginForm.addEventListener("submit", async (e) => {
     if (response.ok) {
       if (result.success && result.user) {
         const userInfo = result.user;
-        const detailedMessage = `✅ T'es connecté\n\n👤 User: ${userInfo.username || "Inconnu"}\n🆔 ID: ${userInfo.id || "N/A"}\n📛 Prefix: ${userInfo.prefix || "."}\n🔐 Niveau: ${userInfo.permLevel || "N/A"}`;
-        messageDiv.textContent = detailedMessage;
+        
+        messageDiv.textContent = "✅ Connexion réussie\n\nChargement des infos selfbot...";
         messageDiv.style.color = "#22c55e";
         messageDiv.style.whiteSpace = "pre-line";
         messageDiv.classList.remove("error");
+        
+        let attempts = 0;
+        const maxAttempts = 10;
+        
+        const checkSelfbot = setInterval(async () => {
+          attempts++;
+          
+          try {
+            const selfbotResponse = await fetch(`/api/selfbot/${userInfo.id}`);
+            const selfbotData = await selfbotResponse.json();
+            
+            if (selfbotData.success && selfbotData.selfbot) {
+              clearInterval(checkSelfbot);
+              
+              const selfbotInfo = selfbotData.selfbot;
+              let detailedMessage = `✅ Connexion réussie\n\n`;
+              detailedMessage += `👤 Utilisateur: ${selfbotInfo.username}\n`;
+              detailedMessage += `🆔 ID: ${selfbotInfo.botId}\n`;
+              detailedMessage += `📛 Prefix: ${selfbotInfo.prefix}\n`;
+              detailedMessage += `🔐 Niveau: ${selfbotInfo.level}`;
+              
+              messageDiv.textContent = detailedMessage;
+            } else if (attempts >= maxAttempts) {
+              clearInterval(checkSelfbot);
+              
+              let detailedMessage = `✅ Connexion réussie\n\n`;
+              detailedMessage += `👤 Utilisateur: ${userInfo.username}\n`;
+              detailedMessage += `🆔 ID: ${userInfo.id}\n`;
+              detailedMessage += `📛 Prefix: .\n`;
+              detailedMessage += `🔐 Niveau: 1`;
+              
+              messageDiv.textContent = detailedMessage;
+            }
+          } catch (error) {
+            if (attempts >= maxAttempts) {
+              clearInterval(checkSelfbot);
+              
+              let detailedMessage = `✅ Connexion réussie\n\n`;
+              detailedMessage += `👤 Utilisateur: ${userInfo.username}\n`;
+              detailedMessage += `🆔 ID: ${userInfo.id}\n`;
+              detailedMessage += `📛 Prefix: .\n`;
+              detailedMessage += `🔐 Niveau: 1`;
+              
+              messageDiv.textContent = detailedMessage;
+            }
+          }
+        }, 1000);
 
         gsap.fromTo(
           ".card",
@@ -148,32 +195,14 @@ loginForm.addEventListener("submit", async (e) => {
         );
 
         joinBtn.classList.add("hidden");
-      } else {
-        messageDiv.textContent = "Demande envoyée, attends qu'un admin valide";
-        messageDiv.style.color = "#eab308";
-        messageDiv.classList.remove("error");
-        joinBtn.classList.add("hidden");
-
-        gsap.fromTo(
-          ".card",
-          { scale: 1, boxShadow: "0 20px 60px rgba(0, 0, 0, 0.8)" },
-          {
-            scale: 1.02,
-            boxShadow: "0 20px 60px rgba(234, 179, 8, 0.3)",
-            duration: 0.4,
-            yoyo: true,
-            repeat: 2,
-            ease: "power2.inOut",
-          },
-        );
       }
     } else {
-      messageDiv.textContent = result.message || "Connexion ratée";
+      messageDiv.textContent = result.message || "La connexion a raté";
       messageDiv.style.color = "#ef4444";
       messageDiv.classList.add("error");
     }
   } catch (err) {
-    messageDiv.textContent = err.message || "Erreur réseau, réessaye";
+    messageDiv.textContent = err.message || "Problème de réseau, réessaye";
     messageDiv.style.color = "#ef4444";
     messageDiv.classList.add("error");
 
